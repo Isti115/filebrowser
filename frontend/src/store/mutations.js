@@ -45,6 +45,10 @@ const mutations = {
     moment.locale(locale);
     i18n.default.locale = locale;
     state.user = value;
+
+    for (const field in value) {
+      document.body.setAttribute(`data-${field}`, value[field]);
+    }
   },
   setJWT: (state, value) => (state.jwt = value),
   multiple: (state, value) => (state.multiple = value),
@@ -67,6 +71,8 @@ const mutations = {
       }
 
       state.user[field] = value[field];
+
+      document.body.setAttribute(`data-${field}`, value[field]);
     }
   },
   updateRequest: (state, value) => {
